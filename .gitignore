@@ -1,0 +1,7 @@
+# Package files
+api/node_modules
+client/node_modules
+
+# Lock files
+api/package-lock.json
+client/package-lock.json
