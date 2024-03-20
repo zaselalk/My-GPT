@@ -6,8 +6,8 @@ import MessageBox from "./Chat/MessageBox";
 const ChatScreen = ({ role }) => {
   return (
     <div className="flex flex-col justify-between w-full h-full ">
-      <ChatHeader role={role} />
-      <ChatMessages role={role} />
+      <ChatHeader />
+      <ChatMessages />
       <MessageBox />
     </div>
   );

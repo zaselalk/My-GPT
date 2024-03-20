@@ -1,8 +1,10 @@
 import React, { useContext, useState } from "react";
 import { ChatContext } from "../contexts/chatContext";
+import { AppContext } from "../contexts/AppContext";
 
-const Instruction = ({ setRole, roles }) => {
+const Instruction = () => {
   const { setMessages } = useContext(ChatContext);
+  const { roles, setRole } = useContext(AppContext);
 
   const roleHandler = (role) => {
     setRole(role);

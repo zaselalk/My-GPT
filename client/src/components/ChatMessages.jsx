@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 import { ChatContext } from "../contexts/chatContext";
-import SystemMessage from "./Chat/SystemMessage";
 import UserMesssage from "./Chat/UserMesssage";
 import AssistantMessage from "./Chat/AssistantMessage";
+import { AppContext } from "../contexts/AppContext";
 
-const ChatMessages = ({ role }) => {
+const ChatMessages = () => {
   const { messages } = useContext(ChatContext);
-  console.log(role);
+  const { role } = useContext(AppContext);
 
   return (
     <div className="flex flex-col overflow-y-auto">

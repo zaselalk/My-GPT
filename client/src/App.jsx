@@ -3,6 +3,7 @@ import "./App.css";
 import Instruction from "./components/Instruction";
 import { ChatContext } from "./contexts/chatContext";
 import ChatScreen from "./components/ChatScreen";
+import { AppContext } from "./contexts/AppContext";
 
 const roles = [
   {
@@ -30,10 +31,10 @@ const roles = [
   },
   {
     id: 4,
-    name: "French Translator",
-    prompt: "Translate the given English sentence to French",
+    name: "Tamil Translator",
+    prompt: "Translate the given English sentence to Tamil",
     message:
-      "Hello there, I'm your French translator. Please type a sentence for me to translate. ",
+      "Hello there, I'm your Tamil translator. Please type a sentence for me to translate. ",
   },
   {
     id: 5,
@@ -54,12 +55,14 @@ function App() {
   ]);
 
   return (
-    <ChatContext.Provider value={{ messages, setMessages }}>
-      <div className="flex flex-col h-screen md:flex-row">
-        <Instruction setRole={setRole} roles={roles} />
-        <ChatScreen role={role} />
-      </div>
-    </ChatContext.Provider>
+    <AppContext.Provider value={{ role, roles, setRole }}>
+      <ChatContext.Provider value={{ messages, setMessages }}>
+        <div className="flex flex-col h-screen md:flex-row">
+          <Instruction />
+          <ChatScreen role={role} />
+        </div>
+      </ChatContext.Provider>
+    </AppContext.Provider>
   );
 }
 
