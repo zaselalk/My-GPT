@@ -1,8 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ChatContext } from "../../contexts/chatContext";
 
 const MessageBox = () => {
   const { messages, setMessages } = useContext(ChatContext);
+  const [isThinking, setIsThinking] = useState(false);
 
   const onMessageSubmit = (e) => {
     e.preventDefault();
@@ -16,9 +17,9 @@ const MessageBox = () => {
         role: "user",
       },
     ];
-    console.log(newContent);
 
     const sendToServer = async (message) => {
+      setIsThinking(true);
       const response = await fetch("http://localhost:3000/api/ask-bot", {
         method: "POST",
         headers: {
@@ -27,6 +28,7 @@ const MessageBox = () => {
         body: JSON.stringify(message),
       });
       const data = await response.json();
+      setIsThinking(false);
 
       setMessages((prev) => {
         return [
@@ -39,17 +41,6 @@ const MessageBox = () => {
       });
     };
 
-    // setMessages((prev) => {
-    //   return [
-    //     ...prev,
-    //     {
-    //       id: prev.length + 1,
-    //       content: message,
-    //       role: "user",
-    //     },
-    //   ];
-    // });
-
     sendToServer(newContent);
     setMessages(newContent);
 
@@ -58,6 +49,13 @@ const MessageBox = () => {
 
   return (
     <div className="container justify-between w-5/6 mx-auto my-5 ">
+      {isThinking && ( // Show typing indicator
+        <div className="flex items-center justify-center w-10 h-10 mr-2">
+          <div className="w-2 h-2 bg-gray-900 rounded-full animate-bounce" />
+          <div className="w-2 h-2 bg-gray-900 rounded-full animate-bounce" />
+          <div className="w-2 h-2 bg-gray-900 rounded-full animate-bounce" />
+        </div>
+      )}
       <form onSubmit={onMessageSubmit}>
         <div className="flex flex-row ">
           <input

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { ChatContext } from "../contexts/chatContext";
 import UserMesssage from "./Chat/UserMesssage";
 import AssistantMessage from "./Chat/AssistantMessage";
@@ -8,8 +8,13 @@ const ChatMessages = () => {
   const { messages } = useContext(ChatContext);
   const { role } = useContext(AppContext);
 
+  useEffect(() => {
+    const chatContainer = document.getElementById("chatContainer");
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+  }, [messages]);
+
   return (
-    <div className="flex flex-col overflow-y-auto">
+    <div className="flex flex-col overflow-y-auto" id="chatContainer">
       {messages.length == 1 && (
         <div className="p-8 mx-auto text-lg text-slate-400">{role.message}</div>
       )}

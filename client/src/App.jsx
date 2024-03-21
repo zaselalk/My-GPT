@@ -8,13 +8,13 @@ import { AppContext } from "./contexts/AppContext";
 const roles = [
   {
     id: 1,
-    name: "General Assitant",
+    name: "General Assistant",
     prompt: "Answer the questions of the user",
     message: "Hello there, I'm your assistant. Please ask me anything. ",
   },
   {
     id: 2,
-    name: "Grammer Cheaker",
+    name: "Grammer Checker",
     prompt: `From now on, respond to the given English sentence by indicating whether it 
       is correct or not. If it's correct, say 'Correct Sentence'; if not, provide the correct sentence with suggestions.`,
     message:
@@ -38,8 +38,9 @@ const roles = [
   },
   {
     id: 5,
-    name: "SQL Query",
-    prompt: "Write a SQL query for given scenario",
+    name: "SQL Translator",
+    prompt:
+      "Write a SQL query for given scenario, If the question is not related to SQL, respond with 'I'm a SQL assistant'",
     message:
       "Hello there, I'm your SQL Query. Please type a query for me to check. ",
   },
