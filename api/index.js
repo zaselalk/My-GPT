@@ -21,6 +21,10 @@ const client = new OpenAIClient(
   new AzureKeyCredential(OPEN_AI_SECRET)
 );
 
+app.get("/", (req, res) => {
+  res.send("API is working");
+});
+
 app.post("/api/ask-bot", async (req, res) => {
   try {
     const result = await client.getChatCompletions(DEPLOY_ID, req.body);
